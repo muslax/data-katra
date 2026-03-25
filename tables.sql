@@ -17,50 +17,63 @@ create table kbbi (
   created text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')),
   updated text
 );
-CREATE TABLE provinsi (
+
+create table d1 (
   id integer primary key,
-  kode text not null unique,
+  kode_d1 text,
+  kode_iso text,
   nama text,
-  iso text,
+  alias text,
+  singkatan text,
   ibukota text,
   geografi text,
+  hari_jadi text,
+  tgl_pembentukan text,
+  wiki text,
+  logo text,
   created text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')),
   updated text
 );
-CREATE TABLE datidua (
+
+create table d2 (
   id integer primary key,
-  kode_provinsi text,
-  nama_provinsi text,
-  tahun_data text,
-  kode_daerah text,
-  nama_daerah text,
-  url text,
-  tipe_daerah text,
+  kode_d1 text,
+  kode_d2 text,
+  kode_iso text,
+  jenis text,
+  nama text,
+  alias text,
   ibukota text,
-  luas real,
-  jml_penduduk integer,
-  kepadatan real,
-  kecamatan integer,
-  distrik integer,
-  kapanewon integer,
-  kemantren integer,
-  desa integer,
-  kalurahan integer,
-  kelurahan integer,
-  kampung integer,
-  gampong integer,
-  nagari integer,
-  jumlah_kecamatan integer GENERATED ALWAYS AS (kecamatan + distrik + kapanewon + kemantren) VIRTUAL,
-  jumlah_desa integer GENERATED ALWAYS AS (desa + kalurahan + kelurahan + kampung + gampong + nagari) VIRTUAL,
+  jml_kecamatan integer,
+  jml_kelurahan integer,
+  jml_desa integer,
+  logo text,
   created text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')),
-  updated text,
-  CONSTRAINT unique_kode UNIQUE (kode_provinsi, kode_daerah)
+  updated text
 );
-CREATE TABLE desa (
+
+create table d3 (
   id integer primary key,
-  kode_provinsi,
-  kode_daerah,
-  kode_kecamatan,
+  kode_d2 text,
+  kode text,
+  nama text,
+  alias text,
+  ibukota text,
+  kodepos text,
+  tipe_d2 text,
+  d2 text,
+  d1 text,
+  jml_desa integer,
+  jml_pulau integer,
+  created text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')),
+  updated text
+);
+
+CREATE TABLE d4 (
+  id integer primary key,
+  kode_d1,
+  kode_d2,
+  kode_d3,
   nama,
   alias,
   kodepos,
@@ -69,11 +82,14 @@ CREATE TABLE desa (
   created text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')),
   updated text
 );
-CREATE TRIGGER update_provinsi AFTER UPDATE ON provinsi
-BEGIN UPDATE provinsi SET updated = (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')) WHERE id=NEW.id; END;
-CREATE TRIGGER update_datidua AFTER UPDATE ON datidua
-BEGIN UPDATE datidua SET updated = (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')) WHERE id=NEW.id; END;
-CREATE TRIGGER update_desa AFTER UPDATE ON desa
-BEGIN UPDATE desa SET updated = (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')) WHERE id=NEW.id; END;
+
 CREATE TRIGGER update_kbbi AFTER UPDATE ON kbbi
 BEGIN UPDATE kbbi SET updated = (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')) WHERE id=NEW.id; END;
+CREATE TRIGGER update_d1 AFTER UPDATE ON d1
+BEGIN UPDATE d1 SET updated = (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')) WHERE id=NEW.id; END;
+CREATE TRIGGER update_d2 AFTER UPDATE ON d2
+BEGIN UPDATE d2 SET updated = (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')) WHERE id=NEW.id; END;
+CREATE TRIGGER update_d3 AFTER UPDATE ON d3
+BEGIN UPDATE d3 SET updated = (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')) WHERE id=NEW.id; END;
+CREATE TRIGGER update_d4 AFTER UPDATE ON d4
+BEGIN UPDATE d4 SET updated = (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')) WHERE id=NEW.id; END;
