@@ -17,11 +17,10 @@ create table kbbi (
   created text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')),
   updated text
 );
-
 create table d1 (
   id integer primary key,
-  kode_d1 text,
-  kode_iso text,
+  kode text,
+  iso text,
   nama text,
   alias text,
   singkatan text,
@@ -34,12 +33,11 @@ create table d1 (
   created text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')),
   updated text
 );
-
 create table d2 (
   id integer primary key,
+  kode text,
   kode_d1 text,
-  kode_d2 text,
-  kode_iso text,
+  iso text,
   jenis text,
   nama text,
   alias text,
@@ -51,38 +49,53 @@ create table d2 (
   created text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')),
   updated text
 );
-
 create table d3 (
   id integer primary key,
-  kode_d2 text,
   kode text,
+  kode_d2 text,
   nama text,
   alias text,
   ibukota text,
   kodepos text,
   tipe_d2 text,
-  d2 text,
-  d1 text,
+  kabupaten text,
+  provinsi text,
   jml_desa integer,
   jml_pulau integer,
   created text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')),
   updated text
 );
-
 CREATE TABLE d4 (
   id integer primary key,
-  kode_d1,
-  kode_d2,
-  kode_d3,
-  nama,
-  alias,
-  kodepos,
-  kecamatan,
-  kabupaten,
+  kode text,
+  kode_d1 text,
+  kode_d2 text,
+  kode_d3 text,
+  nama text,
+  alias text,
+  kodepos text,
+  kecamatan text,
+  kabupaten text,
+  created text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')),
+  updated text
+);
+create table pp (
+  id integer primary key,
+  nama text,
+  tipe text,
+  geo text,
+  kodepos text,
+  d3 text,
+  d2 text,
+  tipe_d2 text,
+  d1 text,
+  kode text,
   created text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')),
   updated text
 );
 
+CREATE TRIGGER update_pp AFTER UPDATE ON pp
+BEGIN UPDATE pp SET updated = (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')) WHERE id=NEW.id; END;
 CREATE TRIGGER update_kbbi AFTER UPDATE ON kbbi
 BEGIN UPDATE kbbi SET updated = (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')) WHERE id=NEW.id; END;
 CREATE TRIGGER update_d1 AFTER UPDATE ON d1
