@@ -17,6 +17,13 @@ Salut juga untuk Mas Listiananda Apriliawan pemilik repositori [kbbi-harvester-c
 
 Dulu sekali, bila saya memerlukan data kewilayahan, jujugan saya adalah sub situs BPS yang mengelola Master File Desa. Bahkan, di tahun 2015 atau 2016, saya sempat membeli dari mereka. Tetapi entah sejak kapan data semacam itu tidak lagi tersedia secara daring, walaupun tetap bisa diunduh dalam format buku (PDF), yang menurut saya kampungan.
 
+Terkait data nama-nama daerah (provinsi, kabupaten/kota, kecamatan, desa), masih ada artefak mainan sederhana yang saya bikin sebelum saya pindah Jakarta (sebelum 2014), semuanya mangkrak di DigitalOcean:
+
+- [http://bisbak.com/regina/]
+- [http://bisbak.com/regina/regina-app/regina-text-vis.html]
+- [http://bisbak.com/regina/regina-app/regina-text-vis2.html]
+- [http://bisbak.com/regina/regina-app/regina-box-vis.html]
+
 ***Fuck*** untuk para pemangku kepentingan yang seharusnya menyediakan data-data publik tetapi tidak melakukan apa pun untuk memudahkan akses data.
 
 O ya, folder `nama` berisi berkas `sql` yang mengoleksi nama-nama Indonesia, Belanda, dan Inggris (Amerika). Datanya saya peroleh, kalau gak salah, dari sebuah artikel di [detik.com](https://detik.com) beberapa tahun yang lalu.
