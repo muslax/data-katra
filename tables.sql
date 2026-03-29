@@ -1,4 +1,3 @@
--- Migration number: 0001 	 2026-03-19T18:51:53.127Z
 create table kbbi (
   id integer primary key,
   _id text,
@@ -52,30 +51,27 @@ create table d2 (
 create table d3 (
   id integer primary key,
   kode text,
-  kode_d2 text,
   nama text,
   alias text,
-  ibukota text,
   kodepos text,
-  tipe_d2 text,
-  kabupaten text,
-  provinsi text,
   jml_desa integer,
   jml_pulau integer,
+  tipe_d2 text,
+  d2 text,
+  d1 text,
   created text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')),
   updated text
 );
 CREATE TABLE d4 (
   id integer primary key,
   kode text,
-  kode_d1 text,
-  kode_d2 text,
-  kode_d3 text,
   nama text,
   alias text,
   kodepos text,
-  kecamatan text,
-  kabupaten text,
+  d3 text,
+  tipe_d2 text,
+  d2 text,
+  d1 text,
   created text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')),
   updated text
 );
