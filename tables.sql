@@ -18,33 +18,34 @@ create table kbbi (
 );
 create table d1 (
   id integer primary key,
+  nama text,
   kode text,
   iso text,
-  nama text,
-  alias text,
   singkatan text,
   ibukota text,
   geografi text,
   hari_jadi text,
   tgl_pembentukan text,
-  wiki text,
+  jml_kabupaten integer,
+  jml_kota integer,
   logo text,
+  wiki text,
+  wiki_ibukota text,
   created text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')),
   updated text
 );
 create table d2 (
   id integer primary key,
-  kode text,
-  kode_d1 text,
-  iso text,
-  jenis text,
   nama text,
-  alias text,
+  kode text,
+  tipe text,
   ibukota text,
   jml_kecamatan integer,
   jml_kelurahan integer,
   jml_desa integer,
   logo text,
+  wiki text,
+  wiki_ibukota text,
   created text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')),
   updated text
 );
@@ -102,3 +103,14 @@ CREATE TRIGGER update_d3 AFTER UPDATE ON d3
 BEGIN UPDATE d3 SET updated = (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')) WHERE id=NEW.id; END;
 CREATE TRIGGER update_d4 AFTER UPDATE ON d4
 BEGIN UPDATE d4 SET updated = (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')) WHERE id=NEW.id; END;
+
+create table nama(
+  `id` integer primary key,
+  `nama` text,
+  `version` integer default 0, -- 0 -> from original list
+  `voted` integer default 0, -- 0 -> not approved yet
+  `created` text DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')),
+  `updated` text
+);
+CREATE TRIGGER update_nama AFTER UPDATE ON nama
+BEGIN UPDATE nama SET updated = (strftime('%Y-%m-%dT%H:%M:%fZ', 'now', 'utc')) WHERE id=NEW.id; END;
